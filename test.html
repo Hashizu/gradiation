@@ -32,15 +32,23 @@
       const material = new THREE.MeshNormalMaterial();
       const box = new THREE.Mesh(geometry, material);
       scene.add(box);
+      
+      container.appendChild(WEBVR.createButton(renderer));
+
+      
+
 
       tick();
-
+    
       // 毎フレーム時に実行されるループイベントです
       function tick() {
+            
+        renderer.vr.enabled = true;
+
         box.rotation.y += 0.01;
         renderer.render(scene, camera); // レンダリング
-
-        requestAnimationFrame(tick);
+        renderer.setAnimationLoop(tick);
+        //requestAnimationFrame(tick);
       }
     }
   </script>
